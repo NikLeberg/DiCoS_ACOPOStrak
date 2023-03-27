@@ -1,0 +1,22 @@
+(*Schnittstelle nach aussen*)
+VAR
+	dummyFirst : UINT;
+	dummySecond : UINT;
+	trakMove : trakMove_t;
+	coupleStep : intCoupleStep_t;
+	distance : LREAL;
+END_VAR
+(*Interne FBs*)
+VAR
+	FB_move : MC_BR_RoutedMoveAbs_AcpTrak;
+	FB_couple : MC_BR_ShCouplingObjCmd_AcpTrak;
+	FB_gearin : MC_GearIn;
+	FB_moveVel : MC_BR_RoutedMoveVel_AcpTrak;
+	FB_moveCyc : MC_BR_ElasticMoveCycPos_AcpTrak;
+	FB_createConvoy : MC_BR_ShCreateConvoy_AcpTrak;
+	FB_add2Convoy : MC_BR_ShMoveInConvoy_AcpTrak;
+	New_Variable1 : USINT;
+	New_Variable : USINT;
+	FB_read1 : MC_BR_ReadCyclicPosition;
+	FB_read2 : MC_BR_ReadCyclicPosition;
+END_VAR

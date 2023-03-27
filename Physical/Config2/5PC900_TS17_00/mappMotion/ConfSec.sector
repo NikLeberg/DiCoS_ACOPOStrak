@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Configuration>
+  <Element ID="gSecMajor" Type="sector">
+    <Selector ID="Type" Value="Composed">
+      <Group ID="StartSegment">
+        <Property ID="SegmentRef" Value="::Seg_A_3" />
+      </Group>
+      <Group ID="IntermediateSegments">
+        <Property ID="SegmentRef[1]" Value="::Seg_A_2" />
+        <Property ID="SegmentRef[2]" Value="::Seg_A_1" />
+        <Property ID="SegmentRef[3]" Value="::Seg_A_12" />
+        <Property ID="SegmentRef[4]" Value="::Seg_A_11" />
+        <Property ID="SegmentRef[5]" Value="::Seg_A_10" />
+        <Property ID="SegmentRef[6]" Value="::Seg_A_9" />
+        <Property ID="SegmentRef[7]" Value="::Seg_A_8" />
+        <Property ID="SegmentRef[8]" Value="::Seg_A_7" />
+        <Property ID="SegmentRef[9]" Value="::Seg_A_6" />
+        <Property ID="SegmentRef[10]" Value="::Seg_A_5" />
+      </Group>
+      <Group ID="EndSegment">
+        <Property ID="SegmentRef" Value="::Seg_A_4" />
+        <Property ID="PositionRelativeTo" Value="FromEnd" />
+      </Group>
+    </Selector>
+  </Element>
+  <Element ID="gSecMinor" Type="sector">
+    <Selector ID="Type" Value="Composed">
+      <Group ID="StartSegment">
+        <Property ID="SegmentRef" Value="::Seg_B_18" />
+      </Group>
+      <Group ID="IntermediateSegments">
+        <Property ID="SegmentRef[1]" Value="::Seg_B_19" />
+        <Property ID="SegmentRef[2]" Value="::Seg_B_20" />
+        <Property ID="SegmentRef[3]" Value="::Seg_B_21" />
+        <Property ID="SegmentRef[4]" Value="::Seg_B_22" />
+        <Property ID="SegmentRef[5]" Value="::Seg_B_13" />
+        <Property ID="SegmentRef[6]" Value="::Seg_B_14" />
+        <Property ID="SegmentRef[7]" Value="::Seg_B_15" />
+        <Property ID="SegmentRef[8]" Value="::Seg_B_16" />
+      </Group>
+      <Group ID="EndSegment">
+        <Property ID="SegmentRef" Value="::Seg_B_17" />
+        <Property ID="PositionRelativeTo" Value="FromEnd" />
+      </Group>
+    </Selector>
+  </Element>
+  <Element ID="gSecLoad" Type="sector">
+    <Selector ID="Type" Value="Subsector">
+      <Property ID="SectorRef" Value="gSecMajor" />
+      <Group ID="Start">
+        <Property ID="Position" Value="0.3" />
+      </Group>
+      <Property ID="Length" Value="0.6" />
+      <Property ID="Direction" Value="Positive" />
+    </Selector>
+  </Element>
+  <Element ID="gSecFull" Type="sector">
+    <Selector ID="Type" Value="Composed">
+      <Group ID="StartSegment">
+        <Property ID="SegmentRef" Value="::Seg_A_5" />
+        <Property ID="PositionRelativeTo" Value="FromEnd" />
+      </Group>
+      <Group ID="IntermediateSegments">
+        <Property ID="SegmentRef[1]" Value="::Seg_A_4" />
+        <Property ID="SegmentRef[2]" Value="::Seg_A_3" />
+        <Property ID="SegmentRef[3]" Value="::Seg_A_2" />
+        <Property ID="SegmentRef[4]" Value="::Seg_A_1" />
+        <Property ID="SegmentRef[5]" Value="::Seg_A_12" />
+        <Property ID="SegmentRef[6]" Value="::Seg_A_11" />
+        <Property ID="SegmentRef[7]" Value="::Seg_A_10" />
+        <Property ID="SegmentRef[8]" Value="::Seg_A_9" />
+        <Property ID="SegmentRef[9]" Value="::Seg_A_8" />
+        <Property ID="SegmentRef[10]" Value="::Seg_A_7" />
+        <Property ID="SegmentRef[11]" Value="::Seg_B_13" />
+        <Property ID="SegmentRef[12]" Value="::Seg_B_14" />
+        <Property ID="SegmentRef[13]" Value="::Seg_B_15" />
+        <Property ID="SegmentRef[14]" Value="::Seg_B_16" />
+        <Property ID="SegmentRef[15]" Value="::Seg_B_17" />
+        <Property ID="SegmentRef[16]" Value="::Seg_B_18" />
+        <Property ID="SegmentRef[17]" Value="::Seg_B_19" />
+        <Property ID="SegmentRef[18]" Value="::Seg_B_20" />
+        <Property ID="SegmentRef[19]" Value="::Seg_B_21" />
+        <Property ID="SegmentRef[20]" Value="::Seg_B_22" />
+        <Property ID="SegmentRef[21]" Value="::Seg_A_7" />
+      </Group>
+      <Group ID="EndSegment">
+        <Property ID="SegmentRef" Value="::Seg_A_6" />
+      </Group>
+    </Selector>
+  </Element>
+</Configuration>

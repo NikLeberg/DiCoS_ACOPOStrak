@@ -1,0 +1,4 @@
+(*Assembly Interface*)
+VAR
+	trakAsmb : trakAsmb_t;
+END_VAR

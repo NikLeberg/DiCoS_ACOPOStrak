@@ -1,0 +1,8 @@
+[Header]
+Version=1
+DataSize=255
+Id=156be5a6-89c2-4994-bc36-74039a8c6eb8
+Compression=Off
+DataEncoding=None
+[Data]
+<CustomItems><CustomItem name="Channel" value="0" persist="True" /><CustomItem name="IF" value="IF1" persist="True" /><CustomItem name="ModuleId" value="45519" persist="True" /><CustomItem name="Name" value="5ACPCI_XPNM_00" persist="True" /></CustomItems>

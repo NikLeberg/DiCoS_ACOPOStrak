@@ -1,0 +1,14 @@
+(*Interne FBs*)
+VAR
+	FB_status : MC_BR_AsmReadStatus_AcpTrak;
+	FB_reset : MC_BR_AsmReset_AcpTrak;
+	FB_powerOff : MC_BR_AsmPowerOff_AcpTrak;
+	FB_powerOn : MC_BR_AsmPowerOn_AcpTrak;
+	FB_getShuttle : MC_BR_AsmGetShuttle_AcpTrak;
+	FB_addShuttle : MC_BR_SecAddShuttle_AcpTrak;
+END_VAR
+(*Interne Variablen*)
+VAR
+	simShuttleCount : USINT;
+	getShuttleStep : intGetShuttleStep_t;
+END_VAR
