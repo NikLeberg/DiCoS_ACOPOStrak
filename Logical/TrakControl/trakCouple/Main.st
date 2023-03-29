@@ -10,16 +10,16 @@ PROGRAM _INIT
 	FB_move.AdvancedParameters.EndDirection       := mcDIR_POSITIVE;
 	FB_move.AdvancedParameters.ShuttleOrientation := mcDIR_UNDEFINED;
 	
-	//FB_couple.Command := mcACPTRAK_COUPLE_OBJ_SET;
+	FB_couple.Command := mcACPTRAK_COUPLE_OBJ_SET;
 	
-	//FB_gearin.Master 			:= ADR(gDummyAxis);
-	//FB_gearin.RatioNumerator 	:= 1; // synchrone 1:1 Bewegung
-	//FB_gearin.RatioDenominator 	:= 1;
-	//FB_gearin.Acceleration 		:= 0.0; // nutze Maximalerte des Slaves
-	//FB_gearin.Deceleration 		:= 0.0;
-	//FB_gearin.Jerk 				:= 0.0;
-	//FB_gearin.BufferMode 		:= mcABORTING;
-	//FB_gearin.MasterValueSource := mcVALUE_ACTUAL;
+	FB_gearin.Master 			:= ADR(gDummyAxis);
+	FB_gearin.RatioNumerator 	:= 1; // synchrone 1:1 Bewegung
+	FB_gearin.RatioDenominator 	:= 1;
+	FB_gearin.Acceleration 		:= 0.0; // nutze Maximalerte des Slaves
+	FB_gearin.Deceleration 		:= 0.0;
+	FB_gearin.Jerk 				:= 0.0;
+	FB_gearin.BufferMode 		:= mcABORTING;
+	FB_gearin.MasterValueSource := mcVALUE_ACTUAL;
 	
 	FB_moveVel.Velocity      	:= 0.8;
 	FB_moveVel.RouteVelocity	:= 0.8;
@@ -38,20 +38,10 @@ PROGRAM _INIT
 	FB_moveCyc.AdvancedParameters.Deceleration 	:= 2.0;
 	FB_moveCyc.AdvancedParameters.Jerk			:= 0.0;
 	
-	FB_createConvoy.Parameters.NegativeOffset := 0.0;
-	FB_createConvoy.Parameters.PositiveOffset := 0.2;
-	FB_createConvoy.Parameters.Separable := FALSE;
-	FB_createConvoy.Parameters.Elastic := TRUE;
-	
-	FB_add2Convoy.Parameters.CouplingMode := mcACPTRAK_COUPL_DIST;
-	FB_add2Convoy.Parameters.Elastic := TRUE;
-	FB_add2Convoy.AdvancedParameters.Velocity := 4.0;
-	FB_add2Convoy.AdvancedParameters.Acceleration := 20.0;
-	FB_add2Convoy.AdvancedParameters.Deceleration := 20.0;
-	FB_add2Convoy.AdvancedParameters.TargetDistance := 0.126;
-	
 	FB_read1.ValueSource := mcVALUE_ACTUAL;
 	FB_read2.ValueSource := mcVALUE_ACTUAL;
+	FB_read3.ValueSource := mcVALUE_SET;
+	FB_read4.ValueSource := mcVALUE_SET;
 	
 	
 	// alle FBs deaktivieren
@@ -60,9 +50,10 @@ PROGRAM _INIT
 	FB_gearin.Execute 	:= FALSE;
 	FB_moveVel.Execute 	:= FALSE;
 	FB_moveCyc.Enable 	:= FALSE;
-	FB_createConvoy.Execute := FALSE;
 	FB_read1.Enable 	:= FALSE;
 	FB_read2.Enable 	:= FALSE;
+	FB_read3.Enable 	:= FALSE;
+	FB_read4.Enable 	:= FALSE;
 	
 	dummyFirst := 1;
 	dummySecond := 0;
@@ -104,17 +95,9 @@ PROGRAM _CYCLIC
 			END_IF;
 			
 		coupleStepSETOBJ1:
-			// erstelle ein Convoy
-			FB_createConvoy.Axis := ADR(trakAsmb.shuttles[dummyFirst].axis);
-			FB_createConvoy.Execute := TRUE;
-			// Weiter wenn Convoy erstellt wurde
-			IF FB_createConvoy.Done THEN
-				FB_createConvoy.Execute := FALSE;
-				coupleStep := coupleStepSETOBJ2;
-			END_IF;
+			// Manueller Schritt, setze coupleStep per PV Watch auf coupleStepSETOBJ2
 			// DEBUG: Skip
 			//coupleStep := coupleStepCOUPLE;
-			// MANUAL
 			
 		coupleStepSETOBJ2:
 			// TEST
@@ -122,23 +105,22 @@ PROGRAM _CYCLIC
 			FB_read2.Axis := ADR(trakAsmb.shuttles[dummySecond].axis);
 			FB_read1.Enable := TRUE;
 			FB_read2.Enable := TRUE;
-			// New
-			FB_add2Convoy.Parameters.ReferenceShuttle := ADR(trakAsmb.shuttles[dummyFirst].axis);
-			FB_add2Convoy.Axis := ADR(trakAsmb.shuttles[dummySecond].axis);
-			FB_add2Convoy.Execute := TRUE;
-			// OLD
-			// Kopplungsobjekt an erstes Shuttle hängen
-			//FB_couple.Axis := ADR(trakAsmb.shuttles[dummySecond].axis);
-			//FB_couple.CouplingObjectName := 'couplingLoad';
-			//FB_couple.Execute := TRUE;
+			FB_read3.Axis := ADR(trakAsmb.shuttles[dummyFirst].axis);
+			FB_read4.Axis := ADR(trakAsmb.shuttles[dummySecond].axis);
+			FB_read3.Enable := TRUE;
+			FB_read4.Enable := TRUE;
+			// Kopplungsobjekt an zweites Shuttle h?ngen
+			FB_couple.Axis := ADR(trakAsmb.shuttles[dummySecond].axis);
+			FB_couple.CouplingObjectName := 'couplingLoad';
+			FB_couple.Execute := TRUE;
 			// Weiter wenn an Objekt angeschlossen.
-			IF FB_add2Convoy.Done THEN
-				FB_add2Convoy.Execute := FALSE;
-				coupleStep := coupleStepDONE;
+			IF FB_couple.Done THEN
+				FB_couple.Execute := FALSE;
+				coupleStep := coupleStepCOUPLE;
 			END_IF;
 			
 		coupleStepCOUPLE:
-			// Achsen synchronisieren bez. tatsächlich Koppeln.
+			// Achsen synchronisieren bez. tats?chlich Koppeln.
 			FB_gearin.Master := ADR(trakAsmb.shuttles[dummyFirst].axis);
 			FB_gearin.Slave := ADR(trakAsmb.shuttles[dummySecond].axis);
 			FB_gearin.Execute := TRUE;
@@ -151,11 +133,11 @@ PROGRAM _CYCLIC
 			// Master Shuttle bewegen.
 			FB_moveCyc.Axis := ADR(trakAsmb.shuttles[dummyFirst].axis);
 			FB_moveCyc.Enable := TRUE;
-			// Weiter wenn Bewegung abgeschlossen.
-			//IF FB_moveCyc.Done THEN
-			//	FB_moveAdd.Execute := FALSE;
-			//	coupleStep := coupleStepWAIT;
-			//END_IF;
+		// Weiter wenn Bewegung abgeschlossen.
+		//IF FB_moveCyc.Done THEN
+		//	FB_moveAdd.Execute := FALSE;
+		//	coupleStep := coupleStepWAIT;
+		//END_IF;
 			
 	END_CASE;
 	
@@ -165,12 +147,13 @@ PROGRAM _CYCLIC
 	FB_gearin();
 	FB_moveVel();
 	FB_moveCyc();
-	FB_createConvoy();
-	FB_add2Convoy();
 	FB_read1();
 	FB_read2();
+	FB_read3();
+	FB_read4();
 	
-	distance := FB_read1.CyclicPosition - FB_read2.CyclicPosition;
+	distanceActual := FB_read1.CyclicPosition - FB_read2.CyclicPosition;
+	distanceSet := FB_read3.CyclicPosition - FB_read4.CyclicPosition;
 	
 	// Enable der FBs deaktivieren wenn Busy Signal geht oder Fehler ansteht.
 	//IF EDGENEG(FB_move.Busy) OR FB_move.Error THEN

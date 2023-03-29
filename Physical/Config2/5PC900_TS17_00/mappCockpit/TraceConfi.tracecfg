@@ -13,7 +13,7 @@
     </Group>
     <Group ID="TrcTriggerSettings">
       <Group ID="TrcTriggerCondition[1]">
-        <Property ID="TrcTriggerDataPoint" Value="::trakMove:trakMove.cmd.trace" />
+        <Property ID="TrcTriggerDataPoint" Value="::trakConvoy:trakMove.cmd.trace" />
         <Selector ID="TrcTriggerConditionSelection" Value="coTRACE_IN_WINDOW_EVENT">
           <Property ID="TrcThreshold" Value="1.0" />
           <Property ID="TrcWindow" Value="0.0" />
@@ -34,8 +34,8 @@
       <Property ID="TrcRecordedDataName" />
     </Group>
     <Group ID="TrcDataPointList">
-      <Property ID="TrcDataPoint[1]" Value="::trakMove:distance" />
-      <Property ID="TrcDataPoint[2]" />
+      <Property ID="TrcDataPoint[1]" Value="::trakConvoy:distanceActual" />
+      <Property ID="TrcDataPoint[2]" Value="::trakConvoy:distanceSet" />
       <Property ID="TrcDataPoint[3]" />
       <Property ID="TrcDataPoint[4]" />
       <Property ID="TrcDataPoint[5]" />

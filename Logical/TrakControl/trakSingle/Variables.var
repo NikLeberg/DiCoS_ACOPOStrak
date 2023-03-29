@@ -1,0 +1,17 @@
+(*Schnittstelle nach aussen*)
+VAR
+	positionSet : LREAL;
+	positionActual : LREAL;
+END_VAR
+(*Interne FBs*)
+VAR
+	FB_move : MC_BR_RoutedMoveAbs_AcpTrak;
+	FB_readSet : MC_BR_ReadCyclicPosition;
+	FB_readActual : MC_BR_ReadCyclicPosition;
+END_VAR
+(*Interne Variablen*)
+VAR
+	posABB : LREAL;
+	posDelta : LREAL;
+	intSingleStep : intSingleStep_t;
+END_VAR

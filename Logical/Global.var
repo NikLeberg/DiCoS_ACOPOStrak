@@ -1,4 +1,12 @@
+(*OPC UA Interface*)
+VAR
+	trakMES : trakMes_t;
+END_VAR
 (*Assembly Interface*)
 VAR
 	trakAsmb : trakAsmb_t;
+END_VAR
+(*Single Interface*)
+VAR
+	trakSingle : trakSingle_t;
 END_VAR

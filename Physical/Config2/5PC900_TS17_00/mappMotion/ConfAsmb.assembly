@@ -62,9 +62,7 @@
       <Property ID="SegmentSimulationOnPLC" Value="Off" />
       <Property ID="ElongationCompensation" Value="Inactive" />
       <Selector ID="StopReaction" Value="InductionHalt" />
-      <Selector ID="SpeedFilter" Value="Lowpass">
-        <Property ID="FilterTime" Value="0.0008" />
-      </Selector>
+      <Selector ID="SpeedFilter" Value="NotUsed" />
       <Group ID="ControllerParameters">
         <Group ID="DefaultParameter">
           <Group ID="Controller">
@@ -84,7 +82,7 @@
             </Group>
           </Group>
           <Group ID="MovementErrorLimits">
-            <Property ID="PositionError" Value="0.03" />
+            <Property ID="PositionError" Value="0.01" />
             <Property ID="VelocityError" Value="50" />
           </Group>
         </Group>

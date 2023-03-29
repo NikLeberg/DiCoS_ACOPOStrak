@@ -23,6 +23,12 @@ PROGRAM _INIT
 	// Shuttle-Get FSM auf Reset
 	getShuttleStep := getShuttleRESET;
 	simShuttleCount := 0;
+	
+	// Initiale Kommandos
+	trakAsmb.cmd.simulation := 0;
+	trakAsmb.cmd.reload := FALSE;
+	trakAsmb.cmd.reset := FALSE;
+	trakAsmb.cmd.power := FALSE;
 	 
 END_PROGRAM
 
@@ -70,20 +76,26 @@ PROGRAM _CYCLIC
 		getShuttleRESET:
 			// lösche die komplette Referenzstruktur
 			brsmemset(ADR(trakAsmb.shuttles), 0, SIZEOF(trakAsmb.shuttles));
-			trakAsmb.shuttleCount := 0;
+			//trakAsmb.shuttleCount := 0;
 			// warte auf nächsten Wechsel in Ready
 			getShuttleStep := getShuttleWAIT;
 			
 		getShuttleWAIT:
 			// Warte bis Assembly in Zustand Ready übergeht.
 			IF FB_status.AssemblyReady THEN
-				//getShuttleStep := getShuttleLOADWAIT;
-				getShuttleStep := getShuttleADDWAIT;
+				// wenn die Anzahl Simulierte Shuttles noch nicht erreicht
+				//  > dann Virtuelle hinzufügen
+				//  > ansonsten nur die echten laden
+				IF trakAsmb.cmd.simulation <> trakAsmb.shuttleCount THEN
+					simShuttleCount := 0;
+					getShuttleStep := getShuttleADDWAIT;
+				ELSE
+					getShuttleStep := getShuttleLOADWAIT;
+				END_IF;
 			END_IF;
 			
 		getShuttleADDWAIT:
-			trakAsmb.shuttleCount := 2;
-			// Füge ein Shuttle hinzu (nur Simulation!), trakAsmb.shuttleCount dient als Anzahl der Shuttles.
+			// Füge ein Shuttle hinzu (nur Simulation!).
 			FB_addShuttle.Position := simShuttleCount * 0.1;
 			FB_addShuttle.Execute := TRUE;
 			IF FB_addShuttle.Done THEN
@@ -94,7 +106,7 @@ PROGRAM _CYCLIC
 		getShuttleADD:
 			// Zähle hoch und falls geforderte Anzahl erreicht, gehe weiter.
 			simShuttleCount := simShuttleCount + 1;
-			IF simShuttleCount = trakAsmb.shuttleCount THEN
+			IF simShuttleCount = trakAsmb.cmd.simulation THEN
 				getShuttleStep := getShuttleLOADWAIT;
 			ELSE
 				getShuttleStep := getShuttleADDWAIT;

@@ -2,7 +2,10 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="Program" Language="IEC">trakFSM</Object>
-    <Object Type="Program" Language="IEC">trakMove</Object>
+    <Object Type="Program" Language="IEC">trakMES</Object>
+    <Object Type="Program" Language="IEC">trakAsmb</Object>
+    <Object Type="Program" Language="IEC">trakConvoy</Object>
+    <Object Type="Program" Language="IEC">trakCouple</Object>
+    <Object Type="Program" Language="IEC">trakSingle</Object>
   </Objects>
 </Package>

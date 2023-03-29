@@ -1,3 +1,21 @@
+(*OPC UA Interface*)
+
+TYPE
+	trakMes_t : 	STRUCT 
+		cmd : trakMesCmd_t; (*Kommandos MES -> trak*)
+		state : trakMesState_t; (*Status trak -> MES*)
+	END_STRUCT;
+	trakMesCmd_t : 	STRUCT 
+		goABB : BOOL; (*Setzen durch MES, Rücksetzen durch trak FSM als Kommando Bestätigung*)
+		goDelta : BOOL; (*Setzen durch MES, Rücksetzen durch trak FSM als Kommando Bestätigung*)
+	END_STRUCT;
+	trakMesState_t : 	STRUCT 
+		power : BOOL; (*trak Assembly ist On*)
+		atABB : BOOL; (*Shuttle beim ABB Roboter*)
+		atDelta : BOOL; (*Shuttle beim Delta Roboter*)
+	END_STRUCT;
+END_TYPE
+
 (*Assembly Interface*)
 
 TYPE
@@ -10,6 +28,7 @@ TYPE
 		errorStop : BOOL;
 	END_STRUCT;
 	trakAsmbCmd_t : 	STRUCT 
+		simulation : USINT; (*Wenn >0, dann ist Simulationsmodus aktiv bez. diese Anzahl an Shuttles wird simuliert*)
 		reload : BOOL; (*Neuladen aller Shuttles*)
 		reset : {REDUND_UNREPLICABLE} BOOL; (*Beim setzen auf 1 wird Asmb zurückgesetzt.*)
 		power : BOOL; (*Beim setzen auf 1 wird automatisch Asmb FSM bis auf Zustand Ready gebracht.*)
@@ -24,5 +43,26 @@ TYPE
 		shuttles : ARRAY[0..9]OF trakShuttle_t; (*Referenzen auf Shuttle Achsen & IDs*)
 		state : trakState_t;
 		cmd : trakAsmbCmd_t;
+	END_STRUCT;
+	New_Datatype : 	STRUCT 
+	END_STRUCT;
+END_TYPE
+
+(*Single Interface*)
+
+TYPE
+	trakSingleCmd_t : 	STRUCT 
+		goABB : BOOL;
+		goDelta : BOOL;
+		read : BOOL;
+	END_STRUCT;
+	trakSingleState_t : 	STRUCT 
+		moving : BOOL;
+		atABB : BOOL;
+		atDelta : BOOL;
+	END_STRUCT;
+	trakSingle_t : 	STRUCT 
+		cmd : trakSingleCmd_t;
+		state : trakSingleState_t;
 	END_STRUCT;
 END_TYPE

@@ -2,8 +2,9 @@
 <?AutomationStudio FileVersion="4.9"?>
 <SwConfiguration CpuAddress="SL1" xmlns="http://br-automation.co.at/AS/SwConfiguration">
   <TaskClass Name="Cyclic#1">
-    <Task Name="trakFSM" Source="TrakControl.trakFSM.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="trakMove" Source="TrakControl.trakMove.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="trakAsmb" Source="TrakControl.trakAsmb.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="trakConvoy" Source="TrakControl.trakConvoy.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="trakMove" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#2" />
   <TaskClass Name="Cyclic#3" />
@@ -15,6 +16,9 @@
   <DataObjects>
     <DataObject Name="McAcpSys" Source="" Memory="UserROM" Language="Binary" />
   </DataObjects>
+  <NcDataObjects>
+    <NcDataObject Name="McDriveLog" Source="" Memory="UserROM" Language="Binary" />
+  </NcDataObjects>
   <Binaries>
     <BinaryObject Name="FWRules" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="McAcpSim" Source="" Memory="UserROM" Language="Binary" />
@@ -43,6 +47,7 @@
     <BinaryObject Name="Config_1" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="ConfPP" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="ConfCoup" Source="" Memory="UserROM" Language="Binary" />
+    <BinaryObject Name="TraceConfi" Source="" Memory="UserROM" Language="Binary" />
   </Binaries>
   <Libraries>
     <LibraryObject Name="McBase" Source="Libraries.McBase.lby" Memory="UserROM" Language="binary" Debugging="true" />
@@ -58,14 +63,14 @@
     <LibraryObject Name="MpAxis" Source="Libraries.MpAxis.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="MpBase" Source="Libraries.MpBase.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="McAcpAx" Source="Libraries.McAcpAx.lby" Memory="UserROM" Language="binary" Debugging="true" />
-    <LibraryObject Name="powerlnk" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
-    <LibraryObject Name="asieccon" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
-    <LibraryObject Name="arssl" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
-    <LibraryObject Name="asepl" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="MpData" Source="Libraries.MpData.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="sys_lib" Source="Libraries.sys_lib.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="DataObj" Source="Libraries.DataObj.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="brsystem" Source="Libraries.brsystem.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="astime" Source="Libraries.astime.lby" Memory="UserROM" Language="binary" Debugging="true" />
+    <LibraryObject Name="powerlnk" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="asieccon" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="arssl" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="asepl" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>
