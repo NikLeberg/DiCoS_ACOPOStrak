@@ -11,7 +11,7 @@ VAR
 END_VAR
 (*Interne Variablen*)
 VAR
-	posABB : LREAL;
-	posDelta : LREAL;
+	posABB : LREAL := 0.272; (*Position auf Sektor gSecMajor*)
+	posDelta : LREAL := 1.2; (*Position auf Sektor gSecMajor*)
 	intSingleStep : intSingleStep_t;
 END_VAR

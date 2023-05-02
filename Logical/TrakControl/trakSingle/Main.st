@@ -90,6 +90,12 @@ PROGRAM _CYCLIC
 	positionActual := FB_readActual.CyclicPosition;
 	
 	trakSingle.state.moving := FB_move.Busy;
+	
+	// Bewegungsbefehle zurücksetzen wenn Bewegung aktiv
+	IF FB_move.Busy THEN
+		trakSingle.cmd.goABB := FALSE;
+		trakSingle.cmd.goDelta := FALSE;
+	END_IF;
 	 
 END_PROGRAM
 

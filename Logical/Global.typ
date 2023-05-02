@@ -66,3 +66,30 @@ TYPE
 		state : trakSingleState_t;
 	END_STRUCT;
 END_TYPE
+
+(*Convoy Interface*)
+
+TYPE
+	trakConvoyCmd_t : 	STRUCT 
+		reset : BOOL;
+		prepare : BOOL;
+		couple : BOOL;
+		move : BOOL;
+		release : BOOL;
+		return : BOOL;
+	END_STRUCT;
+	trakConvoyState_t : 	STRUCT 
+		prepared : BOOL;
+		coupled : BOOL;
+		moved : BOOL;
+		released : BOOL;
+		returned : BOOL;
+	END_STRUCT;
+	trakConvoy_t : 	STRUCT 
+		state : trakConvoyState_t;
+		cmd : trakConvoyCmd_t;
+		startPos : LREAL;
+		coupleDistance : LREAL;
+		targetPos : LREAL;
+	END_STRUCT;
+END_TYPE

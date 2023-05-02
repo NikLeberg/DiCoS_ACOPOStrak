@@ -7,7 +7,6 @@ PROGRAM _INIT
 	FB_powerOn.Assembly := ADR(gAssemblyFigure8);
 	FB_getShuttle.Assembly := ADR(gAssemblyFigure8);
 	FB_addShuttle.Sector := ADR(gSecMinor);
-	FB_addShuttle.Sector := ADR(gDummyAxis);
 	FB_addShuttle.Sector := ADR(gSecMajor);
 	FB_addShuttle.Sector := ADR(gSecFull);
 	
@@ -86,7 +85,7 @@ PROGRAM _CYCLIC
 				// wenn die Anzahl Simulierte Shuttles noch nicht erreicht
 				//  > dann Virtuelle hinzufügen
 				//  > ansonsten nur die echten laden
-				IF trakAsmb.cmd.simulation <> trakAsmb.shuttleCount THEN
+				IF trakAsmb.cmd.simulation <> 0 AND trakAsmb.cmd.simulation <> trakAsmb.shuttleCount THEN
 					simShuttleCount := 0;
 					getShuttleStep := getShuttleADDWAIT;
 				ELSE

@@ -10,3 +10,7 @@ END_VAR
 VAR
 	trakSingle : trakSingle_t;
 END_VAR
+(*Convoy Interface*)
+VAR
+	trakConvoy : trakConvoy_t;
+END_VAR

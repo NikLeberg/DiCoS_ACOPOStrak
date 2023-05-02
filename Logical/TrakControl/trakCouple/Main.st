@@ -12,7 +12,6 @@ PROGRAM _INIT
 	
 	FB_couple.Command := mcACPTRAK_COUPLE_OBJ_SET;
 	
-	FB_gearin.Master 			:= ADR(gDummyAxis);
 	FB_gearin.RatioNumerator 	:= 1; // synchrone 1:1 Bewegung
 	FB_gearin.RatioDenominator 	:= 1;
 	FB_gearin.Acceleration 		:= 0.0; // nutze Maximalerte des Slaves
