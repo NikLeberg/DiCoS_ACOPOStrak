@@ -157,8 +157,17 @@ TYPE
 	McPVAGPAIEnum :
 		( (*General purpose axis interface selector setting*)
 		mcPVAGPAI_NOT_USE := 0, (*Not used - No connection to a device used*)
-		mcPVAGPAI_USE := 1 (*Used - Interface provides output data to control a device and receives status information of a device*)
+		mcPVAGPAI_USE := 1, (*Used - Interface provides output data to control a device and receives status information of a device*)
+		mcPVAGPAI_EXT_ENC := 2 (*External encoder - Interface to read an external encoder*)
 		);
+	McPVAMActModSimOnPLCEnum :
+		( (*Activates or deactivates the module simulation on the PLC*)
+		mcPVAMAMSOP_OFF := 0, (*Off - The module is not simulated on the PLC*)
+		mcPVAMAMSOP_ON := 1 (*On - The module is simulated on the PLC*)
+		);
+	McPVAMType : STRUCT (*Contains parameters which influence or are relevant just for the whole module*)
+		ActivateModuleSimulationOnPLC : McPVAMActModSimOnPLCEnum; (*Activates or deactivates the module simulation on the PLC*)
+	END_STRUCT;
 	McPVAMEType : STRUCT (*Parameter of hardware elements situated between motor encoder and load which influence the scaling*)
 		Gearbox : McCfgGearBoxType; (*Specifies a gearbox by defining the ratio between a gearbox input and output*)
 		RotaryToLinearTransformation : McCfgRotToLinTrfType; (*Specifies a transformation factor between the output of the gear and the actual load movement*)
@@ -421,7 +430,8 @@ TYPE
 		( (*Source selector setting*)
 		mcPVADIAS_NOT_USE := 0, (*Not used -*)
 		mcPVADIAS_VAR := 1, (*Variable - Get value from a PV*)
-		mcPVADIAS_IO_CH := 2 (*I/O channel - Get value from an I/O channel*)
+		mcPVADIAS_IO_CH := 2, (*I/O channel - Get value from an I/O channel*)
+		mcPVADIAS_FOR_BY_FUN_BLK := 3 (*Force by function block - Set logical value by function block*)
 		);
 	McPVADIAllSrcVarType : STRUCT (*Type mcPVADIAS_VAR settings*)
 		PVMapping : STRING[250];
@@ -455,7 +465,8 @@ TYPE
 		( (*Source selector setting*)
 		mcPVADIATS_NOT_USE := 0, (*Not used -*)
 		mcPVADIATS_VAR := 1, (*Variable -*)
-		mcPVADIATS_IO_CH := 2 (*I/O channel - Get value from an I/O channel*)
+		mcPVADIATS_IO_CH := 2, (*I/O channel - Get value from an I/O channel*)
+		mcPVADIATS_FOR_BY_FUN_BLK := 3 (*Force by function block - Set logical value by function block*)
 		);
 	McPVADIAllTrgSrcVarTSEnum :
 		( (*Time stamp selector setting*)
@@ -705,7 +716,19 @@ TYPE
 		BrakeControl : McPVACOBrkCtrlType; (*Parameter of the holding break*)
 		SetSpeed : McPVACOSetSpdType; (*Set speed value*)
 	END_STRUCT;
+	McPVAGPAIUseSimLdSimModEnum :
+		( (*Load simulation mode selector setting*)
+		mcPVAGPAIUSLSM_NOT_USE := 0, (*Not used - Load simulation is not switched on during the axis initialization*)
+		mcPVAGPAIUSLSM_SET_VAL_GEN := 1 (*Set value generation - Only set value generation is active, no controlled system is simulated*)
+		);
+	McPVAGPAIUseSimLdSimModType : STRUCT (*Mode for the motor and load simulation*)
+		Type : McPVAGPAIUseSimLdSimModEnum; (*Load simulation mode selector setting*)
+	END_STRUCT;
+	McPVAGPAIUseSimType : STRUCT (*Parameters which influence the simulation possibilities of this axis*)
+		LoadSimulationMode : McPVAGPAIUseSimLdSimModType; (*Mode for the motor and load simulation*)
+	END_STRUCT;
 	McPVAGPAIUseType : STRUCT (*Type mcPVAGPAI_USE settings*)
+		Module : McPVAMType; (*Contains parameters which influence or are relevant just for the whole module*)
 		MechanicalElements : McPVAMEType; (*Parameter of hardware elements situated between motor encoder and load which influence the scaling*)
 		EncoderLink : McPVAELType; (*Used position input*)
 		Controller : McPVACType; (*Axis controller parameters*)
@@ -714,10 +737,17 @@ TYPE
 		DigitalInputs : McPVADIType; (*Various digital input functionalities e.g. like homing switch or triggers*)
 		StatusInputs : McPVASIType; (*Various input functionalities to be linked to PVs or Channels*)
 		ControlOutputs : McPVACOType; (*Various output functionalities to be linked to PVs*)
+		Simulation : McPVAGPAIUseSimType; (*Parameters which influence the simulation possibilities of this axis*)
+	END_STRUCT;
+	McPVAGPAIExtEncType : STRUCT (*Type mcPVAGPAI_EXT_ENC settings*)
+		MechanicalElements : McPVAMEType; (*Parameter of hardware elements situated between motor encoder and load which influence the scaling*)
+		EncoderLink : McPVAELType; (*Used position input*)
+		DigitalInputs : McPVADIType; (*Various digital input functionalities e.g. like homing switch or triggers*)
 	END_STRUCT;
 	McPVAGPAIType : STRUCT (*Connect a PureVAx to any kind of drive*)
 		Type : McPVAGPAIEnum; (*General purpose axis interface selector setting*)
 		Used : McPVAGPAIUseType; (*Type mcPVAGPAI_USE settings*)
+		ExternalEncoder : McPVAGPAIExtEncType; (*Type mcPVAGPAI_EXT_ENC settings*)
 	END_STRUCT;
 	McPVAFType : STRUCT (*Features for an axis*)
 		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference*)
@@ -750,6 +780,9 @@ TYPE
 	McCfgPureVAxEncLinkType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_PURE_V_AX_ENC_LINK*)
 		EncoderLink : McPVAELType; (*Used position input*)
 	END_STRUCT;
+	McCfgPureVAxDigInType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_PURE_V_AX_DIG_IN*)
+		DigitalInputs : McPVADIType; (*Various digital input functionalities e.g. like homing switch or triggers*)
+	END_STRUCT;
 	McCfgPureVAxCtrlType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_PURE_V_AX_CTRL*)
 		Controller : McPVACType; (*Axis controller parameters*)
 	END_STRUCT;
@@ -759,13 +792,27 @@ TYPE
 	McCfgPureVAxMoveErrLimType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_PURE_V_AX_MOVE_ERR_LIM*)
 		MovementErrorLimits : McPVAMELType; (*Limit values that result in a stop reaction when exceeded*)
 	END_STRUCT;
-	McCfgPureVAxDigInType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_PURE_V_AX_DIG_IN*)
-		DigitalInputs : McPVADIType; (*Various digital input functionalities e.g. like homing switch or triggers*)
-	END_STRUCT;
 	McCfgPureVAxStatInType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_PURE_V_AX_STAT_IN*)
 		StatusInputs : McPVASIType; (*Various input functionalities to be linked to PVs or Channels*)
 	END_STRUCT;
 	McCfgPureVAxCtrlOutType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_PURE_V_AX_CTRL_OUT*)
 		ControlOutputs : McPVACOType; (*Various output functionalities to be linked to PVs*)
+	END_STRUCT;
+	McPVASSimLdSimModEnum :
+		( (*Load simulation mode selector setting*)
+		mcPVASSLSM_NOT_USE := 0, (*Not used - Load simulation is not switched on during the axis initialization*)
+		mcPVASSLSM_SET_VAL_GEN := 1 (*Set value generation - Only set value generation is active, no controlled system is simulated*)
+		);
+	McPVASSimLdSimModType : STRUCT (*Mode for the motor and load simulation*)
+		Type : McPVASSimLdSimModEnum; (*Load simulation mode selector setting*)
+	END_STRUCT;
+	McPVASSimType : STRUCT (*Parameters which influence the simulation possibilities of this axis*)
+		LoadSimulationMode : McPVASSimLdSimModType; (*Mode for the motor and load simulation*)
+	END_STRUCT;
+	McCfgPureVAxSimType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_PURE_V_AX_SIM*)
+		Simulation : McPVASSimType; (*Parameters which influence the simulation possibilities of this axis*)
+	END_STRUCT;
+	McCfgPureVAxModType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_PURE_V_AX_MOD*)
+		Module : McPVAMType; (*Contains parameters which influence or are relevant just for the whole module*)
 	END_STRUCT;
 END_TYPE

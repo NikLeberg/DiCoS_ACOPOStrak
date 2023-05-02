@@ -60,9 +60,14 @@
     </Group>
     <Group ID="CommonSegmentSettings">
       <Property ID="SegmentSimulationOnPLC" Value="Off" />
+      <Selector ID="CoggingCompensation" Value="Active">
+        <Property ID="UpperVelLimit" Value="0.5" />
+      </Selector>
       <Property ID="ElongationCompensation" Value="Inactive" />
       <Selector ID="StopReaction" Value="InductionHalt" />
-      <Selector ID="SpeedFilter" Value="NotUsed" />
+      <Selector ID="SpeedFilter" Value="Lowpass">
+        <Property ID="FilterTime" Value="0.0008" />
+      </Selector>
       <Group ID="ControllerParameters">
         <Group ID="DefaultParameter">
           <Group ID="Controller">
@@ -82,8 +87,11 @@
             </Group>
           </Group>
           <Group ID="MovementErrorLimits">
-            <Property ID="PositionError" Value="0.01" />
+            <Property ID="PositionError" Value="0.1" />
             <Property ID="VelocityError" Value="50" />
+          </Group>
+          <Group ID="Diverter">
+            <Property ID="ForceOverride" Value="1.0" />
           </Group>
         </Group>
         <Selector ID="AdditionalParameterSets" Value="NotUsed" />
@@ -94,6 +102,7 @@
     <Group ID="Shuttles">
       <Property ID="MaxShuttleCount" Value="10" />
       <Property ID="MaxShuttleCommandCount" Value="0" />
+      <Property ID="Deceleration" Value="0.0" />
       <Property ID="UseConvoys" Value="Active" />
       <Group ID="DistanceReserve">
         <Property ID="Collision" Value="0.002" />
@@ -106,11 +115,11 @@
         <Selector ID="ShuttleType[1]" Value="8F1SA.100.xxxxxx-x" />
       </Group>
       <Group ID="CollisionAvoidance">
-        <Selector ID="Strategy" Value="Constant" />
+        <Selector ID="Strategy" Value="AdvancedConstant" />
         <Group ID="MaximumModelDimensions">
           <Group ID="Length">
-            <Property ID="ExtentToFront" Value="0.046" />
-            <Property ID="ExtentToBack" Value="0.046" />
+            <Property ID="ExtentToFront" Value="0.04" />
+            <Property ID="ExtentToBack" Value="0.04" />
           </Group>
           <Group ID="Width">
             <Property ID="Width" Value="0.046" />
@@ -118,12 +127,10 @@
         </Group>
       </Group>
     </Group>
-    <Group ID="AssemblyFeatures">
-      <Property ID="AssemblyFeatureRef[1]" Value="Feature_Coupling" />
-    </Group>
     <Group ID="Visualization">
       <Property ID="MonitoringPv" Value="::trakAsmb.monData" />
       <Property ID="ProcessingTaskClass" Value="1" />
     </Group>
+    <Selector ID="Alarms" Value="None" />
   </Element>
 </Configuration>

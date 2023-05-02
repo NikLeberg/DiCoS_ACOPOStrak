@@ -2,7 +2,7 @@
 <?AutomationStudio FileVersion="4.9"?>
 <BR.AS.HardwareTopology>
   <TimeStamps>
-    <TimeStamp LogicalPath="Config2.Hardware.hw" LastWriteTime="03/20/2023 23:29:52" />
+    <TimeStamp LogicalPath="Config2.Hardware.hw" LastWriteTime="04/25/2023 13:33:40" />
   </TimeStamps>
   <Modules>
     <Module Name="5PC910.SX02-00" Type="5PC910.SX02-00" X="41" Y="90" />
@@ -52,6 +52,7 @@
     <Module Name="80PS080X3.10-01a" Type="80PS080X3.10-01" X="599" Y="-11" />
     <Module Name="80PS080X3.10-01b" Type="80PS080X3.10-01" X="713" Y="-11" />
     <Module Name="80PS080X3.10-01c" Type="80PS080X3.10-01" X="828" Y="-11" />
+    <Module Name="OmniCore_Standard" Type="FBD.Hilscher.PNIOGenDevDTM2.OmniCore Standard" X="249" Y="40" />
   </Modules>
   <Links>
     <Link From="5LS182.6-2" To="X20BC8083" FromPort="IF1" ToPort="PLK1" IsRoutedByUser="False">
@@ -257,22 +258,18 @@
       <Point X="246" Y="589" />
     </Link>
     <Link From="BB_Seg_A_10" To="BB_Seg_A_11" FromPort="PLK2" ToPort="PLK1" IsRoutedByUser="False">
-      <Point X="232.75" Y="549" />
-      <Point X="232.75" Y="549" />
-      <Point X="237.75" Y="549" />
-      <Point X="240" Y="549" />
-      <Point X="240" Y="549.5" />
-      <Point X="256" Y="549.5" />
-      <Point X="256" Y="516" />
-      <Point X="249" Y="528.5" />
+      <Point X="232.5" Y="549" />
+      <Point X="232.5" Y="549" />
+      <Point X="237.5" Y="549" />
+      <Point X="249" Y="549" />
       <Point X="249" Y="516" />
       <Point X="249" Y="488" />
       <Point X="249" Y="488" />
     </Link>
     <Link From="BB_Seg_A_10" To="X20HB2880a" FromPort="PLK3" ToPort="ETH1" IsRoutedByUser="False">
-      <Point X="232.75" Y="538" />
-      <Point X="232.75" Y="538" />
-      <Point X="237.75" Y="538" />
+      <Point X="232.5" Y="538" />
+      <Point X="232.5" Y="538" />
+      <Point X="237.5" Y="538" />
       <Point X="238.75" Y="538" />
       <Point X="238.75" Y="303" />
       <Point X="238.75" Y="278" />
@@ -323,6 +320,16 @@
       <Point X="247" Y="303" />
       <Point X="247" Y="294" />
       <Point X="247" Y="294" />
+    </Link>
+    <Link From="OmniCore_Standard" To="5ACPCI_XPNM_00" FromPort="PN1" ToPort="IF1" IsRoutedByUser="False">
+      <Point X="268" Y="79" />
+      <Point X="268" Y="79" />
+      <Point X="248" Y="79" />
+      <Point X="235" Y="79" />
+      <Point X="235" Y="173" />
+      <Point X="156" Y="173" />
+      <Point X="146" Y="173" />
+      <Point X="146" Y="173" />
     </Link>
   </Links>
   <InfoElements />

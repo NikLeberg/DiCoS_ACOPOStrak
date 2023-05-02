@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* McPureVAx 5.16.2 */
+/* McPureVAx 5.21.2 */
 
 #ifndef _MCPUREVAX_
 #define _MCPUREVAX_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _McPureVAx_VERSION
-#define _McPureVAx_VERSION 5.16.2
+#define _McPureVAx_VERSION 5.21.2
 #endif
 
 #include <bur/plctypes.h>
@@ -84,8 +84,14 @@ typedef enum McPVAJFEnum
 
 typedef enum McPVAGPAIEnum
 {	mcPVAGPAI_NOT_USE = 0,
-	mcPVAGPAI_USE = 1
+	mcPVAGPAI_USE = 1,
+	mcPVAGPAI_EXT_ENC = 2
 } McPVAGPAIEnum;
+
+typedef enum McPVAMActModSimOnPLCEnum
+{	mcPVAMAMSOP_OFF = 0,
+	mcPVAMAMSOP_ON = 1
+} McPVAMActModSimOnPLCEnum;
 
 typedef enum McPVAELEnum
 {	mcPVAEL_NO_ENC = 0,
@@ -165,7 +171,8 @@ typedef enum McPVASRDrvErrEnum
 typedef enum McPVADIAllSrcEnum
 {	mcPVADIAS_NOT_USE = 0,
 	mcPVADIAS_VAR = 1,
-	mcPVADIAS_IO_CH = 2
+	mcPVADIAS_IO_CH = 2,
+	mcPVADIAS_FOR_BY_FUN_BLK = 3
 } McPVADIAllSrcEnum;
 
 typedef enum McPVADILvlEnum
@@ -176,7 +183,8 @@ typedef enum McPVADILvlEnum
 typedef enum McPVADIAllTrgSrcEnum
 {	mcPVADIATS_NOT_USE = 0,
 	mcPVADIATS_VAR = 1,
-	mcPVADIATS_IO_CH = 2
+	mcPVADIATS_IO_CH = 2,
+	mcPVADIATS_FOR_BY_FUN_BLK = 3
 } McPVADIAllTrgSrcEnum;
 
 typedef enum McPVADIAllTrgSrcVarTSEnum
@@ -231,6 +239,16 @@ typedef enum McPVACOSetSpdEnum
 {	mcPVACOSS_NOT_USE = 0,
 	mcPVACOSS_USE = 1
 } McPVACOSetSpdEnum;
+
+typedef enum McPVAGPAIUseSimLdSimModEnum
+{	mcPVAGPAIUSLSM_NOT_USE = 0,
+	mcPVAGPAIUSLSM_SET_VAL_GEN = 1
+} McPVAGPAIUseSimLdSimModEnum;
+
+typedef enum McPVASSimLdSimModEnum
+{	mcPVASSLSM_NOT_USE = 0,
+	mcPVASSLSM_SET_VAL_GEN = 1
+} McPVASSimLdSimModEnum;
 
 typedef struct McPureVAxStatusInputsPvIfType
 {	plcbit PoweredOn;
@@ -385,6 +403,10 @@ typedef struct McPVAJFType
 	struct McPVAJFUseType Used;
 	struct McPVAJFJerkLimType JerkLimited;
 } McPVAJFType;
+
+typedef struct McPVAMType
+{	enum McPVAMActModSimOnPLCEnum ActivateModuleSimulationOnPLC;
+} McPVAMType;
 
 typedef struct McPVAMEType
 {	struct McCfgGearBoxType Gearbox;
@@ -891,8 +913,17 @@ typedef struct McPVACOType
 	struct McPVACOSetSpdType SetSpeed;
 } McPVACOType;
 
+typedef struct McPVAGPAIUseSimLdSimModType
+{	enum McPVAGPAIUseSimLdSimModEnum Type;
+} McPVAGPAIUseSimLdSimModType;
+
+typedef struct McPVAGPAIUseSimType
+{	struct McPVAGPAIUseSimLdSimModType LoadSimulationMode;
+} McPVAGPAIUseSimType;
+
 typedef struct McPVAGPAIUseType
-{	struct McPVAMEType MechanicalElements;
+{	struct McPVAMType Module;
+	struct McPVAMEType MechanicalElements;
 	struct McPVAELType EncoderLink;
 	struct McPVACType Controller;
 	struct McPVASRType StopReaction;
@@ -900,11 +931,19 @@ typedef struct McPVAGPAIUseType
 	struct McPVADIType DigitalInputs;
 	struct McPVASIType StatusInputs;
 	struct McPVACOType ControlOutputs;
+	struct McPVAGPAIUseSimType Simulation;
 } McPVAGPAIUseType;
+
+typedef struct McPVAGPAIExtEncType
+{	struct McPVAMEType MechanicalElements;
+	struct McPVAELType EncoderLink;
+	struct McPVADIType DigitalInputs;
+} McPVAGPAIExtEncType;
 
 typedef struct McPVAGPAIType
 {	enum McPVAGPAIEnum Type;
 	struct McPVAGPAIUseType Used;
+	struct McPVAGPAIExtEncType ExternalEncoder;
 } McPVAGPAIType;
 
 typedef struct McPVAFType
@@ -947,6 +986,10 @@ typedef struct McCfgPureVAxEncLinkType
 {	struct McPVAELType EncoderLink;
 } McCfgPureVAxEncLinkType;
 
+typedef struct McCfgPureVAxDigInType
+{	struct McPVADIType DigitalInputs;
+} McCfgPureVAxDigInType;
+
 typedef struct McCfgPureVAxCtrlType
 {	struct McPVACType Controller;
 } McCfgPureVAxCtrlType;
@@ -959,10 +1002,6 @@ typedef struct McCfgPureVAxMoveErrLimType
 {	struct McPVAMELType MovementErrorLimits;
 } McCfgPureVAxMoveErrLimType;
 
-typedef struct McCfgPureVAxDigInType
-{	struct McPVADIType DigitalInputs;
-} McCfgPureVAxDigInType;
-
 typedef struct McCfgPureVAxStatInType
 {	struct McPVASIType StatusInputs;
 } McCfgPureVAxStatInType;
@@ -970,6 +1009,22 @@ typedef struct McCfgPureVAxStatInType
 typedef struct McCfgPureVAxCtrlOutType
 {	struct McPVACOType ControlOutputs;
 } McCfgPureVAxCtrlOutType;
+
+typedef struct McPVASSimLdSimModType
+{	enum McPVASSimLdSimModEnum Type;
+} McPVASSimLdSimModType;
+
+typedef struct McPVASSimType
+{	struct McPVASSimLdSimModType LoadSimulationMode;
+} McPVASSimType;
+
+typedef struct McCfgPureVAxSimType
+{	struct McPVASSimType Simulation;
+} McCfgPureVAxSimType;
+
+typedef struct McCfgPureVAxModType
+{	struct McPVAMType Module;
+} McCfgPureVAxModType;
 
 
 

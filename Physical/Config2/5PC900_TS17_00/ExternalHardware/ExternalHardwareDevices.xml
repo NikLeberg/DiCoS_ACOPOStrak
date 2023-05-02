@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExternalHardware>
+  <Modules>
+    <Module ModuleID="FBD.Hilscher.PNIOGenDevDTM2.OmniCore Standard" Version="1.1" OrderNumber="OmniCore Standard">
+      <SourceFile OriginalFile="GSDML-V2.35-ABB-Robotics-OmniCore-20211229.xml" TranslationFile="1MHRJ16W.ext" />
+    </Module>
+  </Modules>
+</ExternalHardware>

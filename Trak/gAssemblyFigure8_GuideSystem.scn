@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Object objecttypeid="1" name="ACOPOStrak Scene" visible="1">
+<Object objecttypeid="1" name="ACOPOStrak SceneNEU" visible="1">
 	<ParID parid="80" val="0"/>
-	<ParID parid="81" val="60.0"/>
-	<ParID parid="82" val="0.53500000000000025"/>
-	<ParID parid="90" val="0.0"/>
-	<ParID parid="100" val="329.99999999999994"/>
-	<ParID parid="101" val="-1145.0000000000005"/>
+	<ParID parid="81" val="60"/>
+	<ParID parid="82" val="0.53500000000000003"/>
+	<ParID parid="90" val="0"/>
+	<ParID parid="100" val="330.00000000000006"/>
+	<ParID parid="101" val="-1145.0000000000002"/>
 	<ParID parid="102" val="866.02540378443859"/>
-	<ParID parid="103" val="0.0"/>
+	<ParID parid="103" val="0"/>
 	<ParID parid="104" val="0.50000000000000011"/>
 	<ParID parid="105" val="-0.8660254037844386"/>
-	<ParID parid="106" val="0.0"/>
+	<ParID parid="106" val="0"/>
 	<ParID parid="107" val="0.8660254037844386"/>
 	<ParID parid="108" val="0.50000000000000011"/>
 	<ParID parid="110" val="0.25"/>
-	<ParID parid="120" val="1.0,1.0,1.0"/>
+	<ParID parid="120" val="1,1,1"/>
 	<ParID parid="140" val="0.75,0.75,0.75"/>
 	<Object objecttypeid="2" name="Light 1" visible="1">
 		<ParID parid="100" val="1500"/>
@@ -56,6 +56,7 @@
 				<ParID parid="104" val="-0"/>
 				<ParID parid="105" val="180"/>
 				<ParID parid="120" val="5"/>
+				<ParID parid="121" val="1"/>
 			</Object>
 			<Object objecttypeid="550" name="GuideSystem (Seg_A_2, Seg_A_3, Seg_A_4, Seg_A_5, Seg_A_6)" visible="1">
 				<ParID parid="100" val="660"/>
@@ -65,52 +66,57 @@
 				<ParID parid="104" val="-0"/>
 				<ParID parid="105" val="180"/>
 				<ParID parid="120" val="9"/>
+				<ParID parid="121" val="1"/>
 			</Object>
 			<Object objecttypeid="550" name="GuideSystem (Seg_A_7)" visible="1">
-				<ParID parid="100" val="660"/>
-				<ParID parid="101" val="-630.00000000000034"/>
-				<ParID parid="102" val="-8.0826688743725324e-14"/>
+				<ParID parid="100" val="659.99999999999989"/>
+				<ParID parid="101" val="-630.00000000000023"/>
+				<ParID parid="102" val="-8.0826688743725311e-14"/>
 				<ParID parid="103" val="180"/>
 				<ParID parid="104" val="-0"/>
 				<ParID parid="105" val="180"/>
 				<ParID parid="120" val="5"/>
+				<ParID parid="121" val="1"/>
 			</Object>
 			<Object objecttypeid="550" name="GuideSystem (Seg_A_8, Seg_A_9, Seg_A_10, Seg_A_11, Seg_A_12)" visible="1">
-				<ParID parid="100" val="-7.715274834628332e-14"/>
-				<ParID parid="101" val="-630.00000000000057"/>
-				<ParID parid="102" val="0"/>
+				<ParID parid="100" val="3.3869554116232391e-14"/>
+				<ParID parid="101" val="-630.00000000000011"/>
+				<ParID parid="102" val="-1.3596310734468911e-29"/>
 				<ParID parid="103" val="180"/>
 				<ParID parid="104" val="-0"/>
 				<ParID parid="105" val="180"/>
 				<ParID parid="120" val="9"/>
+				<ParID parid="121" val="1"/>
 			</Object>
 			<Object objecttypeid="550" name="GuideSystem (Seg_B_13, Seg_B_14, Seg_B_15, Seg_B_16, Seg_B_17)" visible="1">
 				<ParID parid="100" val="330.09299999999996"/>
-				<ParID parid="101" val="-660.00000000000045"/>
-				<ParID parid="102" val="-4.0424733587094734e-14"/>
+				<ParID parid="101" val="-660.00000000000023"/>
+				<ParID parid="102" val="-4.042473358709474e-14"/>
 				<ParID parid="103" val="0"/>
 				<ParID parid="104" val="-0"/>
 				<ParID parid="105" val="180"/>
 				<ParID parid="120" val="9"/>
+				<ParID parid="121" val="1"/>
 			</Object>
 			<Object objecttypeid="550" name="GuideSystem (Seg_B_18, Seg_B_19, Seg_B_20, Seg_B_21, Seg_B_22)" visible="1">
-				<ParID parid="100" val="330.09300000000025"/>
-				<ParID parid="101" val="-1290.0000000000009"/>
-				<ParID parid="102" val="-4.0424733587094778e-14"/>
-				<ParID parid="103" val="2.5444437451708134e-14"/>
-				<ParID parid="104" val="180"/>
-				<ParID parid="105" val="-0"/>
+				<ParID parid="100" val="330.09299999999996"/>
+				<ParID parid="101" val="-1290.0000000000002"/>
+				<ParID parid="102" val="-4.0424733587094752e-14"/>
+				<ParID parid="103" val="180"/>
+				<ParID parid="104" val="-0"/>
+				<ParID parid="105" val="180"/>
 				<ParID parid="120" val="9"/>
+				<ParID parid="121" val="1"/>
 			</Object>
 		</Object>
 	</Object>
 	<Object objecttypeid="110" name="Workspace" visible="0">
 		<ParID parid="100" val="0"/>
 		<ParID parid="101" val="0"/>
-		<ParID parid="102" val="0"/>
-		<ParID parid="103" val="0"/>
+		<ParID parid="102" val="203"/>
+		<ParID parid="103" val="180"/>
 		<ParID parid="104" val="-0"/>
-		<ParID parid="105" val="180"/>
+		<ParID parid="105" val="0"/>
 		<ParID parid="106" val="1"/>
 		<ParID parid="107" val="1"/>
 		<ParID parid="108" val="1"/>
@@ -129,6 +135,7 @@
 			<ParID parid="101" val="0"/>
 			<ParID parid="102" val="0"/>
 			<ParID parid="119" val="2"/>
+			<ParID parid="123" val="1"/>
 			<ParID parid="200" val="gAssemblyFigure8"/>
 		</Object>
 		<Object objecttypeid="560" name="Shuttle" visible="1" mask="#14:0#100:4#101:8#103:12#130:16#140:48#120:60#121:64#122:68">
@@ -1483,3 +1490,33 @@
 		</Object>
 	</Object>
 </Object>
+<Materials>
+	<Material ID="0" Name="Undefined" Ambient="0.10000000000000001 0.10000000000000001 0.10000000000000001 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="32"/>
+	<Material ID="1" Name="Red Matte" Ambient="0.69999999999999996 0.050000000000000003 0.050000000000000003 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="2" Name="Blue Matte" Ambient="0.10000000000000001 0.10000000000000001 0.80000000000000004 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="3" Name="Grey Matte" Ambient="0.40000000000000002 0.40000000000000002 0.40000000000000002 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="4" Name="Yellow Matte" Ambient="0.80000000000000004 0.80000000000000004 0 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="5" Name="Green Matte" Ambient="0.10000000000000001 0.80000000000000004 0.10000000000000001 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="6" Name="Orange Matte" Ambient="0.80000000000000004 0.40000000000000002 0 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="7" Name="White Matte" Ambient="0.90000000000000002 0.90000000000000002 0.90000000000000002 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="8" Name="Black Matte" Ambient="0.10000000000000001 0.10000000000000001 0.10000000000000001 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="9" Name="Violet Matte" Ambient="0.69999999999999996 0 0.69999999999999996 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="10" Name="Metal Shine" Ambient="0.20000000000000001 0.20000000000000001 0.20000000000000001 1" Specular="0.80000000000000004 0.80000000000000004 1 1" Emission="0 0 0 1" Shininess="25"/>
+	<Material ID="11" Name="Red Metal Shine" Ambient="0.59999999999999998 0 0 1" Specular="1 0.69999999999999996 0.69999999999999996 1" Emission="0 0 0 1" Shininess="10"/>
+	<Material ID="12" Name="Yellow Metal Shine" Ambient="0.5 0.5 0 1" Specular="0.59999999999999998 0.59999999999999998 0.84999999999999998 1" Emission="0 0 0 1" Shininess="25"/>
+	<Material ID="13" Name="Black Metal Shine" Ambient="0.20000000000000001 0.20000000000000001 0.20000000000000001 1" Specular="0.5 0.5 0.5 1" Emission="0 0 0 1" Shininess="12.5"/>
+	<Material ID="14" Name="Cyan Matte" Ambient="0 0.5 0.5 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="15" Name="Magenta Matte" Ambient="0.5 0 0.5 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="16" Name="Light Grey Matte" Ambient="0.69999999999999996 0.69999999999999996 0.69999999999999996 1" Specular="0 0 0 1" Emission="0 0 0 1" Shininess="64"/>
+	<Material ID="17" Name="Cerulean Blue Shine" Ambient="0 0.54000000000000004 0.75 1" Specular="0.59999999999999998 0.59999999999999998 0.84999999999999998 1" Emission="0 0 0 1" Shininess="25"/>
+	<Material ID="18" Name="Silver" Ambient="0.55000000000000004 0.59999999999999998 0.65000000000000002 1" Specular="0.5 0.55000000000000004 0.59999999999999998 1" Emission="0 0 0 1" Shininess="64"/>
+</Materials>
+<Views>
+	<View ID="1" Name="Overview" Zoom="0.53500000000000003" Perspective="0" ViewPoint="330.00000000000006 -1145.0000000000002 866.02540378443859" ViewVector="0 0.50000000000000011 -0.8660254037844386" AxisOrientation="0 0.8660254037844386 0.50000000000000011"/>
+	<View ID="2" Name="Top" Zoom="0.53500000000000003" Perspective="0" ViewPoint="330.00000000000006 -645.00000000000011 137.49999999999994" ViewVector="0 0 -1" AxisOrientation="0 1 0"/>
+	<View ID="3" Name="Left" Zoom="0.40733955158798274" Perspective="0" ViewPoint="330.00000000000006 -645.00000000000011 137.49999999999994" ViewVector="0 1 0" AxisOrientation="0 0 1"/>
+	<View ID="4" Name="Front" Zoom="0.29722222222222228" Perspective="0" ViewPoint="330.00000000000006 -645.00000000000011 137.49999999999994" ViewVector="-1 0 0" AxisOrientation="0 0 1"/>
+	<View ID="5" Name="Bottom" Zoom="0.53500000000000003" Perspective="0" ViewPoint="330.00000000000006 -645.00000000000011 137.49999999999994" ViewVector="0 0 1" AxisOrientation="0 -1 0"/>
+	<View ID="6" Name="Right" Zoom="0.40733955158798274" Perspective="0" ViewPoint="330.00000000000006 -645.00000000000011 137.49999999999994" ViewVector="0 -1 0" AxisOrientation="0 0 1"/>
+	<View ID="7" Name="Back" Zoom="0.29722222222222228" Perspective="0" ViewPoint="330.00000000000006 -645.00000000000011 137.49999999999994" ViewVector="1 0 0" AxisOrientation="0 0 1"/>
+</Views>

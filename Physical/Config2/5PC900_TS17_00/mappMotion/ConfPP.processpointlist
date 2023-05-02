@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio FileVersion="4.9"?>
 <Configuration>
-  <Element ID="ProcessPointList_1" Type="processpointlist">
+  <Element ID="gPPList" Type="processpointlist">
     <Selector ID="ProcessPoint[0]">
-      <Property ID="Name" Value="PPtest" />
-      <Property ID="SectorRef" Value="gSecMajor" />
-      <Property ID="Position" Value="2.0" />
+      <Property ID="Name" Value="gPPDepot" />
+      <Property ID="SectorRef" Value="gSecFull" />
+      <Property ID="Position" Value="5.6" />
       <Property ID="TriggerEventBufferSize" Value="10" />
       <Selector ID="BarrierFunctionality" Value="On" />
     </Selector>

@@ -7,6 +7,5 @@
     <Object Type="File">ConfSec.sector</Object>
     <Object Type="File">ConfCoup.assemblyfeature</Object>
     <Object Type="File">ConfPP.processpointlist</Object>
-    <Object Type="File">Config_1.axis</Object>
   </Objects>
 </Package>
